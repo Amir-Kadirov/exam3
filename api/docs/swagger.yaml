@@ -1,0 +1,203 @@
+definitions:
+  models.Customers:
+    properties:
+      age:
+        type: integer
+      birthday:
+        type: string
+      external_id:
+        type: string
+      first_name:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      mail:
+        type: string
+      phone:
+        items:
+          type: string
+        type: array
+      sex:
+        type: string
+    type: object
+  models.Response:
+    properties:
+      data: {}
+      description:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: This is a sample server celler server.
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /Customers:
+    get:
+      description: This API returns all Customerss
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get a Customers
+      tags:
+      - Customers
+    post:
+      consumes:
+      - application/json
+      description: This api creates a Customers and returns its id
+      parameters:
+      - description: Customers
+        in: body
+        name: Customers
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customers'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Creates a Customers
+      tags:
+      - Customers
+  /Customers/{id}:
+    get:
+      description: This API get by id a Customers
+      parameters:
+      - description: Customers Id
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Get by id a Customers
+      tags:
+      - Customers
+  /Customers/deleteCustomers/{id}:
+    delete:
+      description: This API delete a Customers
+      parameters:
+      - description: Customers ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Delete a Customers
+      tags:
+      - Customers
+  /Customers/updateCustomers/{id}:
+    put:
+      consumes:
+      - application/json
+      description: This API updates a Customers
+      parameters:
+      - description: Customers ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Customers object to update
+        in: body
+        name: Customers
+        required: true
+        schema:
+          $ref: '#/definitions/models.Customers'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Response'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/models.Response'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/models.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/models.Response'
+      summary: Update a Customers
+      tags:
+      - Customers
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
